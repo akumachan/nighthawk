@@ -1,0 +1,410 @@
+body {
+  user-select:none;
+  color: rgb(233, 200, 231);
+  background-color: rgb(20, 25, 93);
+  background-image: url(./night_castle.jpg);
+  background-repeat: no-repeat;
+  background-size:  cover;
+  background-attachment: fixed;
+  font-family: 'Kosugi Maru', sans-serif;
+}
+
+/* ヘッダー */
+header {
+  position: fixed;
+  height: 6vh;
+  width: 100%;
+  background-color: rgb(20, 25, 93, 0.8);
+  display: flex;
+  justify-content: space-between;
+}
+header span.service_name {
+  font-family: 'Michroma', sans-serif;
+  font-size: 3vh;
+  text-shadow: 0.5px 0.5px 0px #808080;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  vertical-align: center;
+  padding: 0.5vh 2vh 0 2vh;
+}
+header .material-icons {
+  color: rgb(233, 200, 231);
+}
+header .material-icons.menu {
+  font-size: 6vh;
+  padding: 0 1vh;
+}
+header .material-icons.save {
+  font-size: 5vh;
+  padding: 0.4vh 1vw 0 0;
+}
+
+/* デッキリスト */
+div#deck-list-container {
+  padding: 13vh 0 15vh 0;
+  margin: 0 auto;
+  width: 70vw;
+}
+@media screen and (max-width: 480px) {
+  div#deck-list-container {
+    width: 90vw;
+  }
+}
+div#deck-list-container .row {
+  margin: 0;
+  display: flex
+}
+div#deck-list-container .card-box {
+  width: 35vw;
+  background-color: rgb(240, 210, 240, 0.8);
+}
+@media screen and (max-width: 480px) {
+  div#deck-list-container .card-box {
+    width: 45vw;
+  }
+}
+div#deck-list-container .card-box p {
+  color: rgb(20, 25, 93);
+  margin: 0;
+  border-bottom-style: dashed;
+  border-bottom-width: 1px;
+  border-bottom-color: rgb(20, 25, 93, 0.3);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 1rem;
+}
+@media screen and (max-width: 480px) {
+  div#deck-list-container .card-box p {
+    font-size: 0.8rem;
+  }
+}
+div#deck-list-container .card-box strong {
+  padding: 1.2vw;
+}
+div#deck-list-container .card-box .categorized-cards p:last-child {
+  border-bottom: none;
+  margin-bottom: 2px;
+}
+div#deck-list-container .row.lower .card-box.left {
+  border-bottom-left-radius: 10px;
+}
+div#deck-list-container .row.lower .card-box.right {
+  border-bottom-right-radius: 10px;
+}
+
+h1 {
+  display: flex;
+  justify-content: space-between;
+  font-size:1rem;
+  margin: 0;
+  padding-left: 1vw;
+  background-color: rgb(20, 25, 93, 0.8);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+@media screen and (max-width: 480px) {
+  h1 {
+    font-size: 0.5rem;
+  }
+}
+h1>span.main {
+  white-space: nowrap;
+}
+h1>span.deck-name {
+  padding: 0 2vw;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-family: 'Michroma', sans-serif;
+}
+h1>span.sideboard {
+  white-space: nowrap;
+  padding-right: 1vw;
+}
+
+h2 {
+  font-size: 1rem;
+  background-color: rgb(20, 25, 93, 0.8);
+  padding: 0 10px;
+  margin: 0;
+}
+@media screen and (max-width: 480px) {
+  h2 {
+    font-size: 0.6rem;
+  }
+}
+h2.reserved {
+  background-color: rgb(20, 25, 93, 0.8);
+  margin: 0;
+}
+
+/* 追加ボタン */
+a#add-card-window {
+  position: fixed;
+  bottom: 13vh;
+  right: 5vw;
+}
+#add-card-window .open {
+  animation:upsidedown .2s ease 0s forwards;
+}
+#add-card-window .close {
+  animation:downsideup .2s ease 0s forwards;
+}
+a#add-card-window {
+  display: block;
+  width: 56px;
+  height: 56px;
+  background-color: rgb(20, 25, 93, 0.8);
+  text-align: center;
+  border-radius: 50%;
+  transition: .3s;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.12), 0 2px 2px 0 rgba(0,0,0,.24);
+}
+a#add-card-window:hover {
+  box-shadow: 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12), 0 2px 4px -1px rgba(0,0,0,.2);
+}
+a#add-card-window i {
+  color: white;
+  line-height: 56px;
+  font-size: 56px;
+}
+@keyframes upsidedown {
+  0% {
+      transform:rotate(0deg);
+  }
+  100% {
+      transform:rotate(180deg);
+  }
+}
+@keyframes downsideup {
+  0% {
+      transform:rotate(180deg);
+  }
+  100% {
+      transform:rotate(0deg);
+  }
+}
+
+/* モーダル */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+}
+.modal.close {
+  display: none;
+}
+.modal-bg{
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0,0,0,0.8);
+}
+/* 下部ウィンドウ */
+.footer-window {
+  background-color: rgb(20, 25, 93, 0.8);
+  position: fixed;
+  width: 100vw;
+  bottom: 0;
+  left: 0;
+}
+.footer-window.open {
+  animation: footer-window-fadein .1s ease;
+}
+.footer-window.close {
+  animation: footer-window-fadeout .3s ease 0s forwards;
+}
+@keyframes footer-window-fadein {
+  0% {
+    bottom: -30vh;
+  }
+  100% {
+    bottom: 0;
+  }
+}
+@keyframes footer-window-fadeout {
+  0% {
+    bottom: 0;
+  }
+  99% {
+    max-height: 50vh;
+  }
+  100% {
+    max-height: 0;
+    bottom: -30vh;
+  }
+}
+.footer-window i.add {
+  color: green;
+}
+.footer-window i.remove {
+  color: red;
+}
+
+/* カード追加ウィンドウ */
+#addition-window {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-around;
+  height: 10vh;
+  padding: 3vh 0;
+}
+#addition-window #card-selection {
+  display: flex;
+  align-items: flex-start;
+  width:50vw;
+}
+#addition-window #card-search-name {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30vw;
+  min-width: 150px;
+  background-color: #ddd;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+#addition-window #card-search-name input {
+  width: 100%;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+  background-color: #ddd;
+}
+#addition-window #card-search-name i {
+  color: #444444
+}
+#addition-window #card-quantity {
+  display: flex;
+  align-items: center;
+  width: 10vw;
+  margin: 0 1vw;
+}
+#addition-window #card-quantity input {
+  width: 30px;
+  text-align: center;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+  background-color: #ddd;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+#addition-window #card-quantity i {
+  margin: 0 1vw;
+}
+#addition-window .add-card-button {
+  margin-top: -11px;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  vertical-align: top;
+  text-decoration: none;
+  color: #FFF;
+  background: #fd9535;
+  border-radius: 30px;
+  box-shadow: inset 0 2px 0 rgba(255,255,255,0.2), inset 0 -2px 0 rgba(0, 0, 0, 0.05);
+  font-weight: bold;
+  font-size: 31px;
+  border: solid 2px #d27d00;
+}
+#addition-window #add-card {
+  display: fixed;
+}
+#addition-window .add-card-button i.add-in-button {
+  font-size: 20px;
+  position: relative;
+  left: 0px;
+  top: -10px;
+}
+#addition-window .add-card-button i.material-icons.subcategory {
+  position: relative;
+  left: -7px;
+  top: 0px;
+}
+/* カード数更新ウィンドウ */
+#updation-window {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  height: 10vh;
+  padding: 3vh 0;
+}
+@media screen and (max-width: 480px) {
+  #updation-window {
+    height: 20vh;
+  }
+}
+#updation-window #target-card-name {
+  text-shadow: 0.5px 0.5px 0px #808080;
+  margin-right: 4vw;
+}
+@media screen and (max-width: 480px) {
+  #updation-window #target-card-name {
+    text-align: center;
+    width: 100vw;
+  }
+}
+
+#updation-window>div {
+  margin-right: 1vw;
+  white-space: nowrap;
+}
+#updation-window>div input {
+  width: 30px;
+  text-align: center;
+  vertical-align: top;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+  background-color: #ddd;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+
+/* アイコン設定（それぞれ要素の中に移動すべきか） */
+.material-icons.main {
+  font-size: 1.3rem;
+  vertical-align: bottom;
+  padding: 0 0.2vw 0.2vw 0;
+}
+.material-icons.sideboard {
+  font-size: 1.6rem;
+  vertical-align: bottom;
+}
+.material-icons.card-subcategory {
+  font-size: 1rem;
+  vertical-align: bottom;
+  padding-right: 0.5vw;
+}
+.material-icons.card-subcategory {
+  font-size: 1.2rem;
+  vertical-align: bottom;
+  padding-right: 0.5rem;
+  padding-bottom: 0.1rem;
+}
+@media screen and (max-width: 480px) {
+  .material-icons.main {
+    font-size: 0.7rem;
+    vertical-align: bottom;
+    padding: 0 0.2vw 0.2vw 0;
+  }
+  .material-icons.sideboard {
+    font-size: 1rem;
+    vertical-align: bottom;
+  }
+  .material-icons.card-subcategory {
+    font-size: 1rem;
+    padding-right: 0.2rem;
+    padding-bottom: 0rem;
+  }
+}
