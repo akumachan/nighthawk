@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './reboot.css';
-import './deckbuilder-mock.css';
+import './common/reboot.css';
+import './common/common.css';
 
 class Header extends React.Component{
   render() {
