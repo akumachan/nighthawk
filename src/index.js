@@ -1,19 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './common/reboot.css';
-import './common/common.css';
-
-class Header extends React.Component{
-  render() {
-    return (
-      <header>
-        <a href=""><i className="material-icons menu">menu</i></a>
-        <span className="service_name">Nighthawk</span>
-        <a href=""><i className="material-icons save">save</i></a>
-      </header>
-    );
-  }
-}
+import './common/css/reboot.css';
+import './common/css/common.css';
+import Header from './common/Header'
 
 class DeckListContainer extends React.Component {
   constructor(props) {

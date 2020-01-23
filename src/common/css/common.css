@@ -2,7 +2,7 @@ body {
   user-select:none;
   color: rgb(233, 200, 231);
   background-color: rgb(20, 25, 93);
-  background-image: url(./night_castle.jpg);
+  background-image: url(../assets/night_castle.jpg);
   background-repeat: no-repeat;
   background-size:  cover;
   background-attachment: fixed;
