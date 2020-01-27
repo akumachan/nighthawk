@@ -1,3 +1,4 @@
+import React from 'react'
 export default function CardRow(props) {
   return (
     <p onClick={() => props.onClick(props.card)}>
