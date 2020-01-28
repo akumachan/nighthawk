@@ -7,53 +7,39 @@ import AddCardButton from './deck-builder/AddCardButton'
 import AdditionWindow from './deck-builder/AdditionWindow'
 import UpdationWindow from './deck-builder/UpdationWindow'
 import SubcategoryCards from './deck-builder/SubcategoryCards'
+import DeckInfo from './deck-builder/DeckInfo'
+
 class DeckListContainer extends React.Component {
   constructor(props) {
     super(props);
-    const deckInfo = getDeckInfo();
     this.state = {
-      name: deckInfo.name,
-      creatureCards: deckInfo.cardList.filter(
-        (card) => card.subcategory === 'creature' && card.mainQuantity > 0),
-      spellCards: deckInfo.cardList.filter(
-        (card) => card.subcategory === 'spell' && card.mainQuantity > 0),
-      landCards: deckInfo.cardList.filter(
-        (card) => card.subcategory === 'land' && card.mainQuantity > 0),
-      sideboardCards: deckInfo.cardList.filter(
-        (card) => card.sideboardQuantity > 0),
-      reservedCards: deckInfo.cardList.filter(
-        (card) => card.reservedQuantity > 0),
+      deckInfo: new DeckInfo(),
       additionWindowOpen: false,
       updationWindowOpen: false,
       updationCard: {}
     }
-    this.toggleAdditionWindow = this.toggleAdditionWindow.bind(this);
-    this.closeUpdationWindow = this.closeUpdationWindow.bind(this);
-    this.openUpdationWindow = this.openUpdationWindow.bind(this);
-    this.incrementQuantity = this.incrementQuantity.bind(this);
-    this.decrementQuantity = this.decrementQuantity.bind(this);
   }
 
-  toggleAdditionWindow() {
+  toggleAdditionWindow = () => {
     this.setState({additionWindowOpen: !this.state.additionWindowOpen});
   }
 
-  renderAdditionWindow(show) {
+  renderAdditionWindow = (show) => {
     return (
       <AdditionWindow show={show} />
     );
   }
 
-  closeUpdationWindow() {
+  closeUpdationWindow = () => {
     this.setState({updationWindowOpen: false});
   }
 
-  openUpdationWindow(card) {
+  openUpdationWindow = (card) => {
     this.setState({updationWindowOpen: true, updationCard: card});
     this.setState({additionWindowOpen: false});
   }
 
-  renderUpdationWindow(show, card) {
+  renderUpdationWindow = (show, card) => {
     return (
       <UpdationWindow
         show={show}
@@ -100,11 +86,11 @@ class DeckListContainer extends React.Component {
         <section>
           <h1>
             <span className="main">
-              <i className="material-icons main">photo_library</i>10 Main
+              <i className="material-icons main">photo_library</i>{this.state.deckInfo.getMainListCount()} Main
             </span>
-            <span className="deck-name">UW Control for GP Nagoya2020</span>
+            <span className="deck-name">{this.state.deckInfo.name}</span>
             <span className="sideboard">
-              <i className="material-icons sideboard">360</i>10 Sideboard
+              <i className="material-icons sideboard">360</i>{this.state.deckInfo.getSideboardListCount()} Sideboard
             </span>
           </h1>
           <div className="row upper">
@@ -112,56 +98,56 @@ class DeckListContainer extends React.Component {
               <h2>
                 <span>
                   <i className="material-icons card-subcategory">sports_kabaddi</i>
-                  10 Creatures
+                  {this.state.deckInfo.getCreatureListCount()} Creatures
                 </span>
               </h2>
               <SubcategoryCards
                 category="main"
-                cardList={this.state.creatureCards}
+                cardList={this.state.deckInfo.getCreatureList()}
                 onClick={this.openUpdationWindow} />
               <h2>
                 <i className="material-icons card-subcategory">flash_on</i>
-                10 Spells
+                {this.state.deckInfo.getSpellListCount()} Spells
               </h2>
               <SubcategoryCards
                 category="main"
-                cardList={this.state.spellCards}
+                cardList={this.state.deckInfo.getSpellList()}
                 onClick={this.openUpdationWindow} />
             </div>
             <div className="card-box">
               <h2>
                 <i className="material-icons card-subcategory">terrain</i>
-                {this.state.landCards.reduce((sum, card) => sum + card.mainQuantity, 0)} Lands
+                {this.state.deckInfo.getLandListCount()} Lands
               </h2>
               <SubcategoryCards
                 category="main"
-                cardList={this.state.landCards}
+                cardList={this.state.deckInfo.getLandList()}
                 onClick={this.openUpdationWindow} />
               <h2>
                 <i className="material-icons card-subcategory">360</i>
-                {this.state.sideboardCards.reduce((sum, card) => sum + card.sideboardQuantity, 0)} Sideboard
+                {this.state.deckInfo.getSideboardListCount()} Sideboard
               </h2>
               <SubcategoryCards
                 category="sideboard"
-                cardList={this.state.sideboardCards}
+                cardList={this.state.deckInfo.getSideboardList()}
                 onClick={this.openUpdationWindow} />
             </div>
           </div>
           <h2 className="reserved">
             <i className="material-icons card-subcategory">all_inclusive</i>
-            10 Reserved Cards
+            {this.state.deckInfo.getReservedListCount()} Reserved Cards
           </h2>
           <div className="row lower">
             <div className="card-box left">
               <SubcategoryCards
                 category="reserved"
-                cardList={this.state.reservedCards.filter((card, i) => i % 2 === 0)}
+                cardList={this.state.deckInfo.getReservedList().filter((card, i) => i % 2 === 0)}
                 onClick={this.openUpdationWindow} />
             </div>
             <div className="card-box right">
               <SubcategoryCards
                 category="reserved"
-                cardList={this.state.reservedCards.filter((card, i) => i % 2 === 1)}
+                cardList={this.state.deckInfo.getReservedList().filter((card, i) => i % 2 === 1)}
                 onClick={this.openUpdationWindow} />
             </div>
           </div>
