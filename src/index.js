@@ -3,7 +3,10 @@ import ReactDOM from 'react-dom';
 import './common/css/reboot.css';
 import './common/css/common.css';
 import Header from './common/Header'
-
+import AddCardButton from './deck-builder/AddCardButton'
+import AdditionWindow from './deck-builder/AdditionWindow'
+import UpdationWindow from './deck-builder/UpdationWindow'
+import SubcategoryCards from './deck-builder/SubcategoryCards'
 class DeckListContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -166,118 +169,6 @@ class DeckListContainer extends React.Component {
           {this.renderAdditionWindow(this.state.additionWindowOpen)}
           {this.renderUpdationWindow(this.state.updationWindowOpen, this.state.updationCard)}
         </section>
-      </div>
-    );
-  }
-}
-
-function SubcategoryCards(props) {
-  return (
-    <div className="categorized-cards">
-      {props.cardList.map((card) =>
-        <CardRow
-          card={card}
-          category={props.category}
-          onClick={props.onClick}
-        />)}
-    </div>
-  );
-}
-
-function CardRow(props) {
-  return (
-    <p onClick={() => props.onClick(props.card)}>
-      <strong>{props.card[props.category + 'Quantity']}</strong>
-      <span>{props.card.name}</span>
-    </p>
-  );
-}
-
-class AddCardButton extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      open: false
-    }
-    this.toggleOpenState = this.toggleOpenState.bind(this);
-  }
-
-  toggleOpenState(props) {
-    this.setState({open: !this.state.open});
-    props.toggleAdditionWindow();
-  }
-
-  render() {
-    return (
-      <a id="add-card-window" onClick={() => this.toggleOpenState(this.props)}>
-        <i className={["material-icons add-card-window",
-          this.state.open ? 'open' : 'close'].join(' ')}>
-            keyboard_arrow_down
-        </i>
-      </a>
-    );
-  }
-}
-
-class AdditionWindow extends React.Component {
-  render() {
-    return (
-      <div id="addition-window" className={['footer-window', this.props.show ? 'open' : 'close'].join(' ')}>
-        <div id="card-selection">
-          <div id="card-search-name">
-            <i className="material-icons">search</i>
-            <input id="" />
-            <i className="material-icons">clear</i>
-          </div>
-          <div id="card-quantity">
-            <i className="material-icons add">add</i>
-            <input id="" value="4" />
-            <i className="material-icons remove">remove</i>
-          </div>
-        </div>
-        <div>
-          <a id="add-card" className="add-card-button">
-            <i className="material-icons add-in-button">add</i>
-            <i className="material-icons subcategory">photo_library</i>
-          </a>
-        </div>
-      </div>
-    );
-  }
-}
-
-class UpdationWindow extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div className={['modal', this.props.show ? 'open' : 'close'].join(' ')}>
-        <div className="modal-bg" onClick={this.props.closeModal}></div>
-        <div id="updation-window" className={['footer-window', this.props.show ? 'open' : 'close'].join(' ')}>
-          <div id="target-card-name">
-            <p>{this.props.card.name}</p>
-          </div>
-          <div id="main-card-quantity">
-            <i className="material-icons subcategory">photo_library</i>
-            <i className="material-icons add" onClick={() => this.props.increment(this.props.card, "main")}>add</i>
-            <input id="" value={this.props.card.mainQuantity} />
-            <i className="material-icons remove" onClick={() => this.props.decrement(this.props.card, "main")}>remove</i>
-          </div>
-          <div id="sideboard-card-quantity">
-            <i className="material-icons subcategory">360</i>
-            <i className="material-icons add" onClick={() => this.props.increment(this.props.card, "sideboard")}>add</i>
-            <input id="" value={this.props.card.sideboardQuantity}/>
-            <i className="material-icons remove" onClick={() => this.props.decrement(this.props.card, "sideboard")}>remove</i>
-          </div>
-          <div id="reserved-card-quantity">
-            <i className="material-icons subcategory">all_inclusive</i>
-            <i className="material-icons add" onClick={() => this.props.increment(this.props.card, "reserved")}>add</i>
-            <input id="" value={this.props.card.reservedQuantity} />
-            <i className="material-icons remove" onClick={() => this.props.decrement(this.props.card, "reserved")}>remove</i>
-          </div>
-        </div>
       </div>
     );
   }
