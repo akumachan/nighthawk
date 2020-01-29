@@ -15,12 +15,12 @@ export default class AddCardButton extends React.Component {
 
   render() {
     return (
-      <a id="add-card-window" onClick={() => this.toggleOpenState(this.props)}>
+      <span id="add-card-window" onClick={() => this.toggleOpenState(this.props)}>
         <i className={["material-icons add-card-window",
           this.state.open ? 'open' : 'close'].join(' ')}>
             keyboard_arrow_down
         </i>
-      </a>
+      </span>
     );
   }
 }

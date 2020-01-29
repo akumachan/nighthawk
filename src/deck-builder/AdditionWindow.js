@@ -6,12 +6,12 @@ export default class AdditionWindow extends React.Component {
         <div id="card-selection">
           <div id="card-search-name">
             <i className="material-icons">search</i>
-            <input id="" />
+            <input id="card-search-name-input" />
             <i className="material-icons">clear</i>
           </div>
           <div id="card-quantity">
             <i className="material-icons add">add</i>
-            <input id="" value="4" />
+            <input id="card-quantity-input" defaultValue="4" />
             <i className="material-icons remove">remove</i>
           </div>
         </div>
