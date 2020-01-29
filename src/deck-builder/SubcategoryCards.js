@@ -5,6 +5,7 @@ export default function SubcategoryCards(props) {
     <div className="categorized-cards">
       {props.cardList.map((card) =>
         <CardRow
+          key={card.id}
           card={card}
           category={props.category}
           onClick={props.onClick}
