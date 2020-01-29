@@ -16,10 +16,10 @@ export default class AdditionWindow extends React.Component {
           </div>
         </div>
         <div>
-          <a id="add-card" className="add-card-button">
+          <span id="add-card" className="add-card-button">
             <i className="material-icons add-in-button">add</i>
             <i className="material-icons subcategory">photo_library</i>
-          </a>
+          </span>
         </div>
       </div>
     );
