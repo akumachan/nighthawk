@@ -51,34 +51,46 @@ class DeckListContainer extends React.Component {
     );
   }
 
-  incrementQuantity(card,
-                    category,
-                    incrementalNumber = 1,
-                    restrict = (target, category) => {
-                    }) {
-    const listName = card.subcategory + 'Cards';
-
-    const targetList = this.state[listName].slice();
-    for (let target of targetList) {
-      const totalQuantity = target.mainQuantity + target.sideboardQuantity;
-      const afterIncremented = target[category + 'Quantity'] + incrementalNumber;
-      if (target.name === card.name
-        && afterIncremented >= 0
-        && (category === 'reserved'
-            || target.isUnlimitedUse
-            || totalQuantity + incrementalNumber <= 4)) {
-        target[category + 'Quantity'] = afterIncremented;
-        break;
-      } else {
-        // error message or red coloring class css
-      }
+  incrementQuantity = (id, category) => {
+    console.log('test')
+    const info = {...this.state.deckInfo};
+    const target = info.cardList.find((card) => id === card.id);
+    if (target) {
+      console.log(target)
+      target[category+ 'Quantity']++;
+      this.setState({deckInfo: info});
     }
-    this.setState({listName: targetList});
   }
 
-  decrementQuantity(card, category) {
-    this.incrementQuantity(card, category, -1);
-  }
+  decrementQuantity = () => {};
+  //incrementQuantity(card,
+                    //category,
+                    //incrementalNumber = 1,
+                    //restrict = (target, category) => {
+                    //}) {
+    //const listName = card.subcategory + 'Cards';
+
+    //const targetList = this.state[listName].slice();
+    //for (let target of targetList) {
+      //const totalQuantity = target.mainQuantity + target.sideboardQuantity;
+      //const afterIncremented = target[category + 'Quantity'] + incrementalNumber;
+      //if (target.name === card.name
+        //&& afterIncremented >= 0
+        //&& (category === 'reserved'
+            //|| target.isUnlimitedUse
+            //|| totalQuantity + incrementalNumber <= 4)) {
+        //target[category + 'Quantity'] = afterIncremented;
+        //break;
+      //} else {
+        //// error message or red coloring class css
+      //}
+    //}
+    //this.setState({listName: targetList});
+  //}
+
+  //decrementQuantity(card, category) {
+    //this.incrementQuantity(card, category, -1);
+  //}
 
   render() {
     return (
@@ -167,106 +179,3 @@ ReactDOM.render(
   </div>,
   document.getElementById('root')
 );
-
-function getDeckInfo() {
-  return {
-    name: "Mono Red Aggro 2018",
-    cardList: [{
-      id: 'aaaa',
-      name: "ボーマットの急使",
-      subcategory: 'creature',
-      mainQuantity: 4,
-      sideboardQuantity: 0,
-      reservedQuantity: 2
-    },
-    {
-      id: 'aaab',
-      name: "アン一門の壊し屋",
-      subcategory: 'creature',
-      mainQuantity: 3,
-      sideboardQuantity: 1,
-      reservedQuantity: 1
-    },
-    {
-      id: 'aaac',
-      name: "炎の職工、チャンドラ",
-      subcategory: 'spell',
-      mainQuantity: 4,
-      sideboardQuantity: 0,
-      reservedQuantity: 2
-    },
-    {
-      id: 'aaad',
-      name: "ショック",
-      subcategory: 'spell',
-      mainQuantity: 3,
-      sideboardQuantity: 1,
-      reservedQuantity: 1
-    },
-    {
-      id: 'aaae',
-      name: "山",
-      subcategory: 'land',
-      mainQuantity: 24,
-      sideboardQuantity: 0,
-      reservedQuantity: 0,
-      isUnlimitedUse: true
-    },
-    {
-      id: 'aaaf',
-      name: "ラムナプの遺跡",
-      subcategory: 'land',
-      mainQuantity: 4,
-      sideboardQuantity: 0,
-      reservedQuantity: 1
-    },
-    {
-      id: 'aaag',
-      name: "削剥",
-      subcategory: 'spell',
-      mainQuantity: 2,
-      sideboardQuantity: 1,
-      reservedQuantity: 4
-    },
-    {
-      id: 'aaah',
-      name: "Black Lotus",
-      subcategory: 'spell',
-      mainQuantity: 2,
-      sideboardQuantity: 1,
-      reservedQuantity: 100
-    },
-    {
-      id: 'aaai',
-      name: "マスティコア",
-      subcategory: 'creature',
-      mainQuantity: 2,
-      sideboardQuantity: 1,
-      reservedQuantity: 4
-    },
-    {
-      id: 'aaaj',
-      name: "ネビニラルの円盤",
-      subcategory: 'spell',
-      mainQuantity: 1,
-      sideboardQuantity: 1,
-      reservedQuantity: 1
-    },
-    {
-      id: 'aaak',
-      name: "吸血鬼の夜鷲",
-      subcategory: 'creature',
-      mainQuantity: 2,
-      sideboardQuantity: 1,
-      reservedQuantity: 4
-    },
-    {
-      id: 'aaal',
-      name: "火 // 氷",
-      subcategory: 'spell',
-      mainQuantity: 2,
-      sideboardQuantity: 1,
-      reservedQuantity: 4
-    }]
-  };
-}
