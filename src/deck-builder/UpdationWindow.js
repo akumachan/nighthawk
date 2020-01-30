@@ -11,13 +11,13 @@ export default class UpdationWindow extends React.Component {
           <div id="main-card-quantity">
             <i className="material-icons subcategory">photo_library</i>
             <i className="material-icons add" onClick={() => this.props.increment(this.props.card.id, "main")}>add</i>
-            <input id="" value={this.props.card.mainQuantity} />
+            <input id="main-card-quantity-input" value={this.props.card.mainQuantity} />
             <i className="material-icons remove" onClick={() => this.props.decrement(this.props.card, "main")}>remove</i>
           </div>
           <div id="sideboard-card-quantity">
             <i className="material-icons subcategory">360</i>
             <i className="material-icons add" onClick={() => this.props.increment(this.props.card, "sideboard")}>add</i>
-            <input id="" value={this.props.card.sideboardQuantity}/>
+            <input id="sideboard-card-quantity-input" value={this.props.card.sideboardQuantity}/>
             <i className="material-icons remove" onClick={() => this.props.decrement(this.props.card, "sideboard")}>remove</i>
           </div>
           <div id="reserved-card-quantity">
