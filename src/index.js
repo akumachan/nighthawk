@@ -7,8 +7,7 @@ import AddCardButton from './deck-builder/AddCardButton'
 import AdditionWindow from './deck-builder/AdditionWindow'
 import UpdationWindow from './deck-builder/UpdationWindow'
 import SubcategoryCards from './deck-builder/SubcategoryCards'
-import DeckInfo from './deck-builder/DeckInfo'
-import Card from './deck-builder/DeckInfo'
+import DeckInfo, { Card } from './deck-builder/DeckInfo'
 
 class DeckListContainer extends React.Component {
   constructor(props) {
@@ -17,7 +16,7 @@ class DeckListContainer extends React.Component {
       deckInfo: new DeckInfo(),
       additionWindowOpen: false,
       updationWindowOpen: false,
-      updationCard: {}
+      updationCard: new Card()
     }
   }
 

@@ -155,13 +155,13 @@ s
 
 export class Card {
   constructor(obj) {
-    this.id = obj.id;
-    this.name = obj.name;
-    this.subcategory = obj.subcategory;
-    this.mainQuantity = obj.mainQuantity;
-    this.sideboardQuantity = obj.sideboardQuantity;
-    this.reservedQuantity = obj.reservedQuantity;
-    this.isUnlimitedUse = obj.isUnlimitedUse;
+    this.id = obj?.id || '';
+    this.name = obj?.name || '';
+    this.subcategory = obj?.subcategory || '';;
+    this.mainQuantity = obj?.mainQuantity || '';;
+    this.sideboardQuantity = obj?.sideboardQuantity || '';;
+    this.reservedQuantity = obj?.reservedQuantity || '';;
+    this.isUnlimitedUse = obj?.isUnlimitedUse || '';;
   }
 
   incrementMain = (maxCount = 4, incrementNumber = 1) => {
