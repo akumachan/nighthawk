@@ -141,18 +141,18 @@ h2.reserved {
 }
 
 /* 追加ボタン */
-a#add-card-window {
+span#add-card-window {
   position: fixed;
   bottom: 13vh;
   right: 5vw;
 }
-#add-card-window .open {
+span#add-card-window .open {
   animation:upsidedown .2s ease 0s forwards;
 }
-#add-card-window .close {
+span#add-card-window .close {
   animation:downsideup .2s ease 0s forwards;
 }
-a#add-card-window {
+span#add-card-window {
   display: block;
   width: 56px;
   height: 56px;
@@ -162,10 +162,10 @@ a#add-card-window {
   transition: .3s;
   box-shadow: 0 2px 2px 0 rgba(0,0,0,.12), 0 2px 2px 0 rgba(0,0,0,.24);
 }
-a#add-card-window:hover {
+span#add-card-window:hover {
   box-shadow: 0 4px 5px 0 rgba(0,0,0,.14), 0 1px 10px 0 rgba(0,0,0,.12), 0 2px 4px -1px rgba(0,0,0,.2);
 }
-a#add-card-window i {
+span#add-card-window i {
   color: white;
   line-height: 56px;
   font-size: 56px;
