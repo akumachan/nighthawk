@@ -8,6 +8,7 @@ import AdditionWindow from './deck-builder/AdditionWindow'
 import UpdationWindow from './deck-builder/UpdationWindow'
 import SubcategoryCards from './deck-builder/SubcategoryCards'
 import DeckInfo from './deck-builder/DeckInfo'
+import Card from './deck-builder/DeckInfo'
 
 class DeckListContainer extends React.Component {
   constructor(props) {
@@ -45,52 +46,19 @@ class DeckListContainer extends React.Component {
         show={show}
         card={card}
         closeModal={this.closeUpdationWindow}
-        increment={this.incrementQuantity}
-        decrement={this.decrementQuantity}
+        setDeckInfo={this.setDeckInfo}
+        getDeckInfo={this.getDeckInfo}
+        changeQuantity={this.changeQuantity}
       />
     );
   }
 
-  incrementQuantity = (id, category) => {
-    console.log('test')
-    const info = {...this.state.deckInfo};
-    const target = info.cardList.find((card) => id === card.id);
-    if (target) {
-      console.log(target)
-      target[category+ 'Quantity']++;
-      this.setState({deckInfo: info});
-    }
+  getDeckInfo = () => {
+    return this.state.deckInfo;
   }
-
-  decrementQuantity = () => {};
-  //incrementQuantity(card,
-                    //category,
-                    //incrementalNumber = 1,
-                    //restrict = (target, category) => {
-                    //}) {
-    //const listName = card.subcategory + 'Cards';
-
-    //const targetList = this.state[listName].slice();
-    //for (let target of targetList) {
-      //const totalQuantity = target.mainQuantity + target.sideboardQuantity;
-      //const afterIncremented = target[category + 'Quantity'] + incrementalNumber;
-      //if (target.name === card.name
-        //&& afterIncremented >= 0
-        //&& (category === 'reserved'
-            //|| target.isUnlimitedUse
-            //|| totalQuantity + incrementalNumber <= 4)) {
-        //target[category + 'Quantity'] = afterIncremented;
-        //break;
-      //} else {
-        //// error message or red coloring class css
-      //}
-    //}
-    //this.setState({listName: targetList});
-  //}
-
-  //decrementQuantity(card, category) {
-    //this.incrementQuantity(card, category, -1);
-  //}
+  setDeckInfo = (info) => {
+    this.setState({deckInfo: info});
+  }
 
   render() {
     return (

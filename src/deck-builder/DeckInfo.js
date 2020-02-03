@@ -1,14 +1,18 @@
 export default class DeckInfo {
   constructor() {
     this.name = "Mono Red Aggro 2018";
-    this.cardList = [{
+    this.format = "Standard";
+
+    const bomat = new Card({
       id: 'aaaa',
       name: "ボーマットの急使",
       subcategory: 'creature',
-      mainQuantity: 4,
+      mainQuantity: 1,
       sideboardQuantity: 0,
       reservedQuantity: 2
-    },
+    });
+
+    this.cardList = [bomat,
     {
       id: 'aaab',
       name: "アン一門の壊し屋",
@@ -146,5 +150,45 @@ s
 
   getSideboardListCount = () => {
     return this.getSideboardList().reduce((sum, card) => sum + card.sideboardQuantity, 0);
+  }
+}
+
+export class Card {
+  constructor(obj) {
+    this.id = obj.id;
+    this.name = obj.name;
+    this.subcategory = obj.subcategory;
+    this.mainQuantity = obj.mainQuantity;
+    this.sideboardQuantity = obj.sideboardQuantity;
+    this.reservedQuantity = obj.reservedQuantity;
+    this.isUnlimitedUse = obj.isUnlimitedUse;
+  }
+
+  incrementMain = (maxCount = 4, incrementNumber = 1) => {
+    this._increment((num = 0) => this.mainQuantity += num, maxCount, incrementNumber);
+  }
+
+  decrementMain = (decrementNumber = 1) => {
+    this._decrement((num = 0) => this.mainQuantity -= num, decrementNumber);
+  }
+
+  incrementSideboard = (maxCount = 4, incrementNumber = 1) => {
+    this._increment((num = 0) => this.sideboardQuantity += num, maxCount, incrementNumber);
+  }
+
+  decrementSideboard = (decrementNumber = 1) => {
+    this._decrement((num = 0) => this.sideboardQuantity -= num, decrementNumber);
+  }
+
+  _increment = (quantityProp, maxCount, incrementNumber) => {
+    if (!this.isUnlimitedUse && maxCount - quantityProp() >= incrementNumber) {
+      quantityProp(incrementNumber);
+    }
+  }
+
+  _decrement = (quantityProp, decrementNumber) => {
+    if (quantityProp() - decrementNumber >= 0) {
+     quantityProp(decrementNumber);
+    }
   }
 }
