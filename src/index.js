@@ -7,17 +7,20 @@ import AddCardButton from './deck-builder/AddCardButton';
 import AdditionWindow from './deck-builder/AdditionWindow';
 import UpdationWindow from './deck-builder/UpdationWindow';
 import SubcategoryCards from './deck-builder/SubcategoryCards';
-import DeckInfo, { Card } from './deck-builder/DeckInfo';
+import DeckInfo, { CardInDeck } from './deck-builder/DeckInfo';
+import DeckBuilderDao from './deck-builder/DeckBuilderDao';
 
 class DeckListContainer extends React.Component {
   constructor(props) {
     super(props);
 
+    DeckBuilderDao.getDeck('jzoibED7E4V61ve5oJZl')
+
     this.state = {
       deckInfo: new DeckInfo(),
       additionWindowOpen: false,
       updationWindowOpen: false,
-      updationCard: new Card()
+      updationCard: new CardInDeck()
     }
   }
 

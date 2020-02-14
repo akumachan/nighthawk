@@ -1,15 +1,5 @@
-import mtg from 'mtgsdk'
-
-
 export default class DeckInfo {
   constructor() {
-
-    // mtg.card.where({legalities: {format: 'Standard', legality: 'Legal'}})
-    //   .then(result => {
-    //     console.log(result.length)
-    //     const card = Card.getConvertedCard(result[0]);
-    //     console.log(card) // "Black Lotus"
-    //   });
 
     this.id = 'test';
     this.user = 'testuser';
@@ -23,7 +13,7 @@ export default class DeckInfo {
     this.name = "Mono Red Aggro 2018";
     this.format = "Standard";
 
-    const bomat = new Card({
+    const bomat = new CardInDeck({
       id: 'aaaa',
       name: "ボーマットの急使",
       subcategory: 'creature',
@@ -173,7 +163,7 @@ s
   }
 }
 
-export class Card {
+export class CardInDeck {
   constructor(obj) {
     this.id = obj?.id || '';
     this.name = obj?.name || '';
@@ -213,9 +203,9 @@ export class Card {
     }
   }
 
-  static getConvertedCard(mtgObj) {
+  static getCardInDeck(mtgObj) {
     console.log(mtgObj)
-    const card = new Card();
+    const card = new CardInDeck();
     card.id = mtgObj.id;
     card.name = mtgObj.name;
     card.jpName = mtgObj.foreignNames.find(l => l.language === 'Japanese').name;
