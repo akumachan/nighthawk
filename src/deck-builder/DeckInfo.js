@@ -1,5 +1,19 @@
+import mtg from 'mtgsdk'
+
+
 export default class DeckInfo {
   constructor() {
+
+    // mtg.card.where({legalities: {format: 'Standard', legality: 'Legal'}})
+    //   .then(result => {
+    //     console.log(result.length)
+    //     const card = Card.getConvertedCard(result[0]);
+    //     console.log(card) // "Black Lotus"
+    //   });
+
+    this.id = 'test';
+    this.user = 'testuser';
+
     const mtg = require('mtgsdk');
     mtg.card.find(3)
       .then(result => {
@@ -163,11 +177,12 @@ export class Card {
   constructor(obj) {
     this.id = obj?.id || '';
     this.name = obj?.name || '';
-    this.subcategory = obj?.subcategory || '';;
-    this.mainQuantity = obj?.mainQuantity || '';;
-    this.sideboardQuantity = obj?.sideboardQuantity || '';;
-    this.reservedQuantity = obj?.reservedQuantity || '';;
-    this.isUnlimitedUse = obj?.isUnlimitedUse || '';;
+    this.jpName = obj?.name || '';
+    this.subcategory = obj?.subcategory || '';
+    this.mainQuantity = obj?.mainQuantity || 0;
+    this.sideboardQuantity = obj?.sideboardQuantity || 0;
+    this.reservedQuantity = obj?.reservedQuantity || 0;
+    this.isUnlimitedUse = obj?.isUnlimitedUse || false;
   }
 
   incrementMain = (maxCount = 4, incrementNumber = 1) => {
@@ -196,5 +211,17 @@ export class Card {
     if (quantityProp() - decrementNumber >= 0) {
      quantityProp(decrementNumber);
     }
+  }
+
+  static getConvertedCard(mtgObj) {
+    console.log(mtgObj)
+    const card = new Card();
+    card.id = mtgObj.id;
+    card.name = mtgObj.name;
+    card.jpName = mtgObj.foreignNames.find(l => l.language === 'Japanese').name;
+    card.subcategory = mtgObj.types.includes('Creature') ? 'creature' :
+      mtgObj.types.includes('Land') ? 'land' : 'spell';
+    card.isUnlimitedUse = mtgObj.supertypes.includes('Basic');
+    return card;
   }
 }

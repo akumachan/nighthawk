@@ -3,15 +3,16 @@ import ReactDOM from 'react-dom';
 import './common/css/reboot.css';
 import './common/css/common.css';
 import Header from './common/Header'
-import AddCardButton from './deck-builder/AddCardButton'
-import AdditionWindow from './deck-builder/AdditionWindow'
-import UpdationWindow from './deck-builder/UpdationWindow'
-import SubcategoryCards from './deck-builder/SubcategoryCards'
-import DeckInfo, { Card } from './deck-builder/DeckInfo'
+import AddCardButton from './deck-builder/AddCardButton';
+import AdditionWindow from './deck-builder/AdditionWindow';
+import UpdationWindow from './deck-builder/UpdationWindow';
+import SubcategoryCards from './deck-builder/SubcategoryCards';
+import DeckInfo, { Card } from './deck-builder/DeckInfo';
 
 class DeckListContainer extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       deckInfo: new DeckInfo(),
       additionWindowOpen: false,
