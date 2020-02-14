@@ -10,7 +10,10 @@ var firebaseConfig = {
   measurementId: "G-JE4YBPFGCT"
 };
 firebase.initializeApp(firebaseConfig);
-firebase.analytics();
+if ('analytics' in firebase) {
+  firebase.analytics();
+}
+// firebase.firestore().enablePersistence({synchronizeTabs : true});
 
 export default firebase;
 export const firestore = firebase.firestore();
