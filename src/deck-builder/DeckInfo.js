@@ -13,6 +13,13 @@ export default class DeckInfo {
 
     this.id = 'test';
     this.user = 'testuser';
+
+    const mtg = require('mtgsdk');
+    mtg.card.find(3)
+      .then(result => {
+        console.log(result.card.name) // "Black Lotus"
+      });
+
     this.name = "Mono Red Aggro 2018";
     this.format = "Standard";
 
