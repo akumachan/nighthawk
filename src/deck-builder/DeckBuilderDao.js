@@ -1,11 +1,16 @@
-import { firestore } from '../common/firebase'
+import { firestore } from '../firebase/firebase'
 
 export default class DeckBuilderDao {
-  static getDeck = () => {
-    firestore.collection('decks').get().then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-        console.log(doc.data());
-      });
+// firebase.firestore().enablePersistence({synchronizeTabs : true});
+  static firestore = firestore.enablePersistence({synchronizeTabs : true})
+  static decksCollection = firestore.collection('decks');
+  static cardsCollection = firestore.collection('cards');
+  static getDeck = (id) => {
+    this.decksCollection.doc(id).get({ source: "cache" }).then((querySnapshot) => {
+      console.log(querySnapshot.data())
+      // querySnapshot.forEach((doc) => {
+      //   console.log(doc.data());
+      // });
     });;
   }
 }
